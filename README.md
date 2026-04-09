@@ -28,8 +28,8 @@ I don't build demos. I build systems that run in production — autonomous agent
 | Project | What it does | Tech stack | Link |
 |---------|-------------|------------|------|
 | **A.S.K (Agent Skills Kernel)** | A versioned, composable library of AI agent capabilities. Think `.dll` files for AI systems — write a capability once (GitHub push, Telegram notify, Vercel deploy, autonomous purchase), invoke it from any agent. Includes a three-tier skill taxonomy, a reference executor, cryptographic skill signing, and the full production skill set powering the GFS platform. | Python (stdlib), Markdown, YAML, Supabase, Telegram Bot API, Vercel API, Privacy.com, HeyGen | [srmbsrg/ask-kernel](https://github.com/srmbsrg/ask-kernel) |
-
-*More projects will be added as repos are prepared for public release.*
+| **agent-spawner-demo** | Dynamic agent instantiation with template inheritance, capability resolution, and full lifecycle management. Extracted from a production multi-agent ERP platform running 8+ concurrent domain agents (Finance, HR, Sales, Compliance…). Shows how to make agents data-driven: templates define blueprints, the spawner resolves inheritance at instantiation time, and a single command dispatcher handles all lifecycle transitions (spawn / start / pause / terminate / restart / assignTask). | TypeScript, Node.js | [srmbsrg/agent-spawner-demo](https://github.com/srmbsrg/agent-spawner-demo) |
+| **multi-model-router** | Per-stage multi-LLM routing with cost/quality/speed metadata, deterministic-first reasoning, and a hard token gate for budget enforcement. Extracted from a production 4-stage code-generation pipeline (architecture → DB schema → API routes → UI components) that routes across 7 model providers. Architecture stage gets Claude Sonnet 4 for reasoning depth; UI stage gets GPT-4o for speed. Daily token budget + per-minute rate limit cut runaway spend. | TypeScript, Node.js, OpenAI-compatible API | [srmbsrg/multi-model-router](https://github.com/srmbsrg/multi-model-router) |
 
 ---
 
