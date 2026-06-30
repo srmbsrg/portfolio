@@ -1,14 +1,14 @@
 # Scott Murphy — Software Engineering Portfolio
 
 > **Senior Software Engineer & Solutions Architect**
-> .NET modernization + AI / agentic systems · 15+ years
+> .NET modernization + AI / agentic systems · Over 20 years
 > Enterprise .NET & cloud architecture, and an independent founder shipping AI-native products end to end.
 
 ---
 
 ## About
 
-I'm a senior software engineer and solutions architect with 15+ years building enterprise-grade systems across .NET, cloud, and integration-heavy environments — and the founder of **Carborundum AI**, where I design and ship AI-native products from zero.
+I'm a senior software engineer and solutions architect with over 20 years building enterprise-grade systems across .NET, cloud, and integration-heavy environments — and the founder of **Carborundum AI**, where I design and ship AI-native products from zero.
 
 My work spans two complementary tracks. The first is **application modernization**: legacy .NET decomposition, migration to .NET Core / .NET 10, Clean Architecture and modular-monolith refactoring, Azure-native APIs, and enterprise integrations (Salesforce, document-management platforms, AI-assisted processing). The second is **applied AI engineering**: multi-agent orchestration on the Claude API, RAG and memory pipelines, and agentic workflow design — built from first principles, not wrapper libraries.
 
