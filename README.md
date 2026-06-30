@@ -81,7 +81,7 @@ The design philosophy: AI systems should be *engineered*, not prompted. Skills o
 
 ## Contact
 
-**Email:** scott@carborundum.ai
+**Email:** scott@carborundum.ai · scottroymurphy@hotmail.com · scottroymurphy@outlook.com
 **Web:** [scottroymurphy.com](https://scottroymurphy.com) · [carborundum.ai](https://www.carborundum.ai)
 **GitHub:** [github.com/srmbsrg](https://github.com/srmbsrg)
 **LinkedIn:** [linkedin.com/in/scottroymurphy](https://linkedin.com/in/scottroymurphy)
