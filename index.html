@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scott Murphy — Software Engineer & Solutions Architect</title>
+<meta name="description" content="Scott Murphy — Senior Software Engineer & Solutions Architect. .NET modernization + AI / agentic systems. Founder of Carborundum AI.">
+<style>
+  :root{
+    --bg:#0f1117; --panel:#1a202c; --panel-2:#1e2a3a; --border:#2d3748;
+    --text:#e2e8f0; --muted:#a0aec0; --dim:#718096; --faint:#4a5568;
+    --accent:#63b3ed; --accent-strong:#4299e1; --white:#ffffff;
+    --hero-a:#1a365d; --hero-b:#2a4365;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.6;
+    padding:40px 24px;
+  }
+  a{color:var(--accent); text-decoration:none; transition:color .2s;}
+  a:hover{color:var(--white);}
+  .wrap{max-width:1180px; margin:0 auto;}
+
+  /* Header */
+  .site-header{border-bottom:1px solid var(--border); padding-bottom:28px; margin-bottom:36px;}
+  .site-header h1{font-size:34px; font-weight:800; color:var(--white); letter-spacing:-.6px; line-height:1.15;}
+  .site-header .headline{font-size:16px; color:var(--accent); font-weight:600; margin-top:8px;}
+  .site-header .sub{font-size:14px; color:var(--muted); margin-top:6px;}
+  .site-header .meta{display:flex; flex-wrap:wrap; gap:18px; margin-top:16px; font-size:13px;}
+  .site-header .meta a{color:var(--muted);}
+  .site-header .meta a:hover{color:var(--accent);}
+
+  /* Layout */
+  .layout{display:grid; grid-template-columns:1.55fr 1fr; gap:36px; align-items:start;}
+  @media(max-width:900px){ .layout{grid-template-columns:1fr; gap:8px;} body{padding:28px 16px;} .site-header h1{font-size:28px;} }
+
+  section{margin-bottom:34px;}
+  .label{font-size:11px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:var(--faint); margin-bottom:14px;}
+  h2.section-title{font-size:20px; color:var(--white); font-weight:700; margin-bottom:4px;}
+  p{color:var(--text);}
+  p + p{margin-top:12px;}
+  .bring{list-style:none; margin-top:14px; display:grid; gap:8px;}
+  .bring li{position:relative; padding-left:20px; color:var(--muted); font-size:14.5px;}
+  .bring li::before{content:"▹"; position:absolute; left:0; color:var(--accent);}
+
+  /* Project cards */
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:18px 20px; margin-bottom:14px; transition:border-color .2s,background .2s;}
+  .card:hover{border-color:var(--accent-strong); background:var(--panel-2);}
+  .card .ct{font-size:16px; font-weight:700; color:var(--white);}
+  .card .ct .tag{font-size:10px; font-weight:600; padding:2px 8px; border-radius:5px; margin-left:10px; vertical-align:middle; background:#2d3748; color:var(--muted);}
+  .card .ct .tag.live{background:#234e52; color:#76e4cf;}
+  .card .ct .tag.private{background:#3a2d2d; color:#e0a0a0;}
+  .card p{font-size:14px; color:var(--muted); margin-top:8px;}
+  .card .stack{font-size:11.5px; color:var(--dim); margin-top:10px; font-family:'SF Mono','Fira Code',ui-monospace,monospace;}
+  .card .links{margin-top:10px; font-size:13px;}
+
+  .hero{background:linear-gradient(135deg,var(--hero-a) 0%,var(--hero-b) 100%); border:1px solid #2b6cb0; border-radius:12px; padding:24px; margin-bottom:18px;}
+  .hero .ct{font-size:22px; font-weight:800; color:#ebf8ff;}
+  .hero .ct .tag{background:#2b6cb0; color:#bee3f8;}
+  .hero p{color:#cfe3f7; font-size:14.5px; margin-top:10px;}
+  .hero .stack{color:#90cdf4;}
+  .hero .links a{color:#bee3f8;}
+  .hero .links a:hover{color:var(--white);}
+
+  /* Experience */
+  .job{padding:14px 0; border-bottom:1px solid var(--border);}
+  .job:last-child{border-bottom:none;}
+  .job .role{font-size:15px; font-weight:700; color:var(--white);}
+  .job .when{font-size:12.5px; color:var(--dim); margin-top:2px;}
+  .job p{font-size:13.5px; color:var(--muted); margin-top:8px;}
+
+  /* Skills */
+  .skills{display:grid; gap:12px;}
+  .skillrow{font-size:14px;}
+  .skillrow .k{color:var(--accent); font-weight:600;}
+  .skillrow .v{color:var(--muted);}
+
+  /* Articles / repos lists */
+  .linklist{display:grid; gap:10px;}
+  .linkcard{display:block; padding:13px 16px; background:var(--panel); border:1px solid var(--border); border-radius:8px; transition:border-color .2s,background .2s;}
+  .linkcard:hover{border-color:var(--accent-strong); background:var(--panel-2);}
+  .linkcard .lt{font-size:14px; font-weight:600; color:var(--text);}
+  .linkcard:hover .lt{color:var(--white);}
+  .linkcard .ls{font-size:12.5px; color:var(--dim); margin-top:3px;}
+  .linkcard .lu{font-size:11px; color:var(--faint); margin-top:4px; font-family:'SF Mono','Fira Code',ui-monospace,monospace; word-break:break-all;}
+
+  /* Resume panel (right column) */
+  .resume{position:sticky; top:24px; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:26px;}
+  @media(max-width:900px){ .resume{position:static; margin-top:8px;} }
+  .resume .rname{font-size:22px; font-weight:800; color:var(--white); letter-spacing:-.3px;}
+  .resume .rtitle{font-size:13px; color:var(--accent); margin-top:4px; font-weight:500;}
+  .resume .rmeta{font-size:12px; color:var(--dim); margin-top:10px; display:flex; flex-wrap:wrap; gap:12px;}
+  .resume hr{border:none; border-top:1px solid var(--border); margin:18px 0;}
+  .resume .rlabel{font-size:10px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--faint); margin:18px 0 10px;}
+  .resume p, .resume li{font-size:13px; color:var(--muted);}
+  .resume p + p{margin-top:10px;}
+  .resume ul{list-style:none; display:grid; gap:6px;}
+  .resume ul li{position:relative; padding-left:16px;}
+  .resume ul li::before{content:"–"; position:absolute; left:0; color:var(--accent);}
+  .resume .rjob{margin-bottom:14px;}
+  .resume .rjob .rr{font-size:13.5px; font-weight:700; color:var(--text);}
+  .resume .rjob .rw{font-size:11.5px; color:var(--dim); margin:2px 0 6px;}
+
+  footer{margin-top:48px; padding-top:22px; border-top:1px solid var(--border); text-align:center; font-size:12px; color:var(--faint);}
+  footer a{color:var(--dim);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site-header">
+    <h1>Scott Murphy</h1>
+    <div class="headline">Senior Software Engineer &amp; Solutions Architect — .NET modernization + AI / agentic systems</div>
+    <div class="sub">15+ years building enterprise systems · Founder of Carborundum AI</div>
+    <div class="meta">
+      <a href="mailto:scott@carborundum.ai">scott@carborundum.ai</a>
+      <a href="https://www.linkedin.com/in/scottroymurphy" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/srmbsrg" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://scottroymurphy.com" target="_blank" rel="noopener">scottroymurphy.com</a>
+      <a href="https://www.carborundum.ai" target="_blank" rel="noopener">carborundum.ai</a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- LEFT COLUMN -->
+    <main class="col-left">
+
+      <section>
+        <div class="label">About</div>
+        <p>I'm a senior software engineer and solutions architect with 15+ years building enterprise-grade systems across .NET, cloud, and integration-heavy environments — and the founder of <strong>Carborundum AI</strong>, where I design and ship AI-native products from zero.</p>
+        <p>My work spans two complementary tracks. The first is <strong>application modernization</strong>: legacy .NET decomposition, migration to .NET Core / .NET 10, Clean Architecture and modular-monolith refactoring, Azure-native APIs, and enterprise integrations. The second is <strong>applied AI engineering</strong>: multi-agent orchestration on the Claude API, RAG and memory pipelines, and agentic workflow design — built from first principles, not wrapper libraries.</p>
+        <p>I own complex architecture end-to-end and move from architecture to working code to deployed system without a committee. Most recently I delivered cloud-native .NET 10 microservices and AI-assisted insurance workflows for Lockton on a Perficient app-modernization engagement; independently I've built and shipped complete products — Carborundum AI, MiChoice, and Interview Ready.</p>
+        <ul class="bring">
+          <li>Application modernization from assessment to delivery — legacy decomposition, microservices and modular-monolith refactoring, Azure-native APIs</li>
+          <li>Applied AI engineering — multi-agent orchestration on the Claude / Anthropic API, RAG &amp; memory pipelines, agentic workflow design</li>
+          <li>Full-stack product delivery — Next.js/React front ends, .NET/Blazor services, Stripe, CI/CD, deployed and running in production</li>
+          <li>Enterprise integration depth — Salesforce (Forza.Net/SOQL), M-Files, document processing, distributed caching</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="label">Featured Projects</div>
+
+        <div class="hero">
+          <div class="ct">Carborundum AI <span class="tag">Founder · 2025–present</span></div>
+          <p>AI-native field-operations platform for trades businesses (HVAC, plumbing, electrical), built from zero. A Next.js platform (25+ routes, subdomain routing, Vercel auto-deploy) over a modular ERP suite (Manifold) covering job costing, scheduling, CRM, and invoicing; a multi-agent AI layer integrating the Claude API, ElevenLabs voice, and HeyGen avatars under a written operating constitution; Stripe payment flows; and a React Native companion field app (Titanium). WCAG 2.1 AA across the product surface.</p>
+          <div class="stack">Next.js · React · Node · Claude API · React Native · Stripe · Vercel</div>
+          <div class="links"><a href="https://www.carborundum.ai" target="_blank" rel="noopener">carborundum.ai →</a></div>
+        </div>
+
+        <div class="card">
+          <div class="ct">MiChoice <span class="tag private">Private repo</span></div>
+          <p>Multi-module K-12 school-nutrition SaaS suite, built end-to-end. Multi-tenant modules for district back-office (miComs), parent free-&amp;-reduced applications (miFAR), cashier POS (miMeal), and time-clock (miTimes), plus an AI advisory insight layer (miAgentic) that switches to the Anthropic API for recommendations. Deployed on Railway.</p>
+          <div class="stack">C#/.NET · Blazor Server · EF Core · Next.js/React · Anthropic API · Railway</div>
+          <div class="links">Live demo available on request</div>
+        </div>
+
+        <div class="card">
+          <div class="ct">Interview Ready <span class="tag private">Private repo</span></div>
+          <p>A consumer AI interview-prep product: customers create an account and pay a one-time $9.99 fee (Stripe) for AI-driven interview preparation. Built on Next.js with customer accounts and payment flow. Public site not yet on its final domain.</p>
+          <div class="stack">Next.js · React · Stripe · customer accounts</div>
+          <div class="links">In private development</div>
+        </div>
+
+        <div class="card">
+          <div class="ct">A.S.K (Agent Skills Kernel)</div>
+          <p>A versioned, composable library of AI agent capabilities — think <code>.dll</code> files for AI systems. Write a capability once (GitHub push, Telegram notify, Vercel deploy), invoke it from any agent. Three-tier skill taxonomy, a reference executor, and cryptographic skill signing.</p>
+          <div class="stack">Python (stdlib) · Markdown · YAML · Supabase · Telegram Bot API · Vercel API</div>
+          <div class="links"><a href="https://github.com/srmbsrg/ask-kernel" target="_blank" rel="noopener">srmbsrg/ask-kernel →</a></div>
+        </div>
+
+        <div class="card">
+          <div class="ct">agent-spawner-demo</div>
+          <p>Dynamic agent instantiation with template inheritance, capability resolution, and full lifecycle management. Templates define blueprints, the spawner resolves inheritance at instantiation time, and a single command dispatcher handles all lifecycle transitions (spawn / start / pause / terminate / restart / assignTask).</p>
+          <div class="stack">TypeScript · Node.js</div>
+          <div class="links"><a href="https://github.com/srmbsrg/agent-spawner-demo" target="_blank" rel="noopener">srmbsrg/agent-spawner-demo →</a></div>
+        </div>
+
+        <div class="card">
+          <div class="ct">multi-model-router</div>
+          <p>Per-stage multi-LLM routing with cost/quality/speed metadata, deterministic-first reasoning, and a hard token gate for budget enforcement. Extracted from a 4-stage code-generation pipeline — reasoning-heavy stages get a stronger model; latency-sensitive stages get a faster one. Daily token budget + per-minute rate limit cut runaway spend.</p>
+          <div class="stack">TypeScript · Node.js · OpenAI-compatible API</div>
+          <div class="links"><a href="https://github.com/srmbsrg/multi-model-router" target="_blank" rel="noopener">srmbsrg/multi-model-router →</a></div>
+        </div>
+
+        <div class="card">
+          <div class="ct">ThreadingTemplate</div>
+          <p>Production-grade async I/O patterns — concurrent task orchestration with thread pools and non-blocking operations for enterprise batch processing.</p>
+          <div class="stack">C# · .NET · System.Threading · TPL · log4net</div>
+          <div class="links"><a href="https://github.com/srmbsrg/ThreadingTemplate" target="_blank" rel="noopener">srmbsrg/ThreadingTemplate →</a></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">Experience</div>
+
+        <div class="job">
+          <div class="role">Perficient, Inc. — Senior Technical Consultant, App Modernization</div>
+          <div class="when">Remote / Houston, TX · Nov 2025 – Apr 2026</div>
+          <p>Delivered cloud-native .NET 10 microservices and enterprise API engineering for Lockton on a large-scale application-modernization engagement. Designed a Binder Management API suite (Clean Architecture, modular domain layers); integrated QuoteCompare AI to automate binder document extraction and premium calculation; implemented M-Files document-management integration; architected an Azure Redis distributed-caching strategy; built Salesforce integration microservices (Forza.Net / SOQL); and established CI/CD with NUnit/Moq coverage.</p>
+        </div>
+
+        <div class="job">
+          <div class="role">Loomis Armored — Senior Software Engineer</div>
+          <div class="when">Houston, TX · Mar 2022 – Mar 2025</div>
+          <p>Led modernization of Loomis Direct from legacy .NET to .NET Core and a React SPA, improving maintainability and UI responsiveness. Drove Azure cloud adoption and optimized CI/CD pipelines, cutting deployment time by 30%.</p>
+        </div>
+
+        <div class="job">
+          <div class="role">Transcore — Senior Software Engineer (Contract)</div>
+          <div class="when">Houston, TX · Oct 2019 – Nov 2021</div>
+          <p>Delivered modernization solutions for state-government systems using Angular, C#, and Azure-hosted SQL; converted multi-threaded legacy data processing into scalable, maintainable modules.</p>
+        </div>
+
+        <div class="job">
+          <div class="role">Roquemore — Senior Software Engineer</div>
+          <div class="when">Garland, TX · Jun 2015 – Sep 2019</div>
+          <p>Modernized internal WPF and MVC applications and led multiple third-party integrations including Equifax, TransUnion, and CarFax.</p>
+        </div>
+
+        <div class="job">
+          <div class="role">Automated Integration — Senior Software Engineer</div>
+          <div class="when">Dallas, TX · Jan 2011 – Mar 2015</div>
+          <p>Revitalized a legacy ERP/dispatching system and developed C# / SQL Server field-service mobile applications.</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">Skills &amp; Stack</div>
+        <div class="skills">
+          <div class="skillrow"><span class="k">Backend:</span> <span class="v">C#, .NET 10 / .NET Core, Clean Architecture, DDD, REST APIs, EF Core</span></div>
+          <div class="skillrow"><span class="k">Front-end:</span> <span class="v">Next.js, React, Angular, Blazor Server, React Native</span></div>
+          <div class="skillrow"><span class="k">AI engineering:</span> <span class="v">Multi-agent orchestration (Claude / Anthropic API), RAG &amp; memory pipelines, agentic workflow design, prompt architecture, ElevenLabs voice</span></div>
+          <div class="skillrow"><span class="k">Cloud &amp; DevOps:</span> <span class="v">Azure (App Services, Redis, Storage), Vercel, Railway, CI/CD (Azure DevOps, Jenkins, Git, Octopus)</span></div>
+          <div class="skillrow"><span class="k">Integrations &amp; payments:</span> <span class="v">Salesforce (Forza.Net / SOQL), M-Files, Stripe, document processing</span></div>
+          <div class="skillrow"><span class="k">Also:</span> <span class="v">Node.js, Python, SQL Server, NUnit / Moq</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">Articles</div>
+        <div class="linklist">
+          <a class="linkcard" href="https://www.linkedin.com/pulse/asset-judgment-scott-murphy-cbr8c" target="_blank" rel="noopener">
+            <div class="lt">The Asset Is the Judgment</div>
+            <div class="ls">On where durable value sits when the code writes itself.</div>
+          </a>
+          <a class="linkcard" href="https://www.linkedin.com/in/scottroymurphy" target="_blank" rel="noopener">
+            <div class="lt">An Artificial Conversation</div>
+            <div class="ls">On existing vs. living, consciousness, and where AI is actually headed.</div>
+          </a>
+          <a class="linkcard" href="https://www.linkedin.com/pulse/agentic-engineers-still-need-full-stack-hands-heads-scott-murphy-lx5hc" target="_blank" rel="noopener">
+            <div class="lt">Agentic engineers still need to be full-stack — in their heads</div>
+            <div class="ls">Why agentic tools raise the stakes for architectural thinking, with a production example.</div>
+          </a>
+          <a class="linkcard" href="https://www.linkedin.com/pulse/we-dont-use-phrase-artificial-intelligence-internally-scott-murphy-03rdc" target="_blank" rel="noopener">
+            <div class="lt">We don't use the phrase "Artificial Intelligence" internally. Here's why.</div>
+            <div class="ls">The CI/SI framework — Carbon Intelligence and Silicon Intelligence.</div>
+          </a>
+          <a class="linkcard" href="https://www.linkedin.com/pulse/we-wrote-constitution-our-ai-before-needed-one-scott-murphy-xpugc" target="_blank" rel="noopener">
+            <div class="lt">We wrote a constitution for our AI before we needed one</div>
+            <div class="ls">Governance architecture for autonomous AI systems.</div>
+          </a>
+          <a class="linkcard" href="https://www.linkedin.com/pulse/before-si-after-what-happens-when-agentic-ai-lands-school-murphy-pjzoe" target="_blank" rel="noopener">
+            <div class="lt">Before SI, After: What Happens When Agentic AI Lands in School</div>
+            <div class="ls">Real-world deployment of agentic AI in K-12 nutrition management.</div>
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">Public Repos / Agentic Coding</div>
+        <div class="linklist">
+          <a class="linkcard" href="https://github.com/srmbsrg/ask-kernel" target="_blank" rel="noopener">
+            <div class="lt">ask-kernel (A.S.K)</div>
+            <div class="ls">Versioned, composable library of AI agent capabilities.</div>
+            <div class="lu">github.com/srmbsrg/ask-kernel</div>
+          </a>
+          <a class="linkcard" href="https://github.com/srmbsrg/agent-spawner-demo" target="_blank" rel="noopener">
+            <div class="lt">agent-spawner-demo</div>
+            <div class="ls">Dynamic multi-agent instantiation with template inheritance and lifecycle management.</div>
+            <div class="lu">github.com/srmbsrg/agent-spawner-demo</div>
+          </a>
+          <a class="linkcard" href="https://github.com/srmbsrg/multi-model-router" target="_blank" rel="noopener">
+            <div class="lt">multi-model-router</div>
+            <div class="ls">Per-stage multi-LLM routing with cost/quality metadata and budget enforcement.</div>
+            <div class="lu">github.com/srmbsrg/multi-model-router</div>
+          </a>
+          <a class="linkcard" href="https://github.com/srmbsrg" target="_blank" rel="noopener">
+            <div class="lt">More on GitHub</div>
+            <div class="ls">Full list of public repositories.</div>
+            <div class="lu">github.com/srmbsrg</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT COLUMN: RESUME -->
+    <aside class="col-right">
+      <div class="resume">
+        <div class="rname">Scott Roy Murphy</div>
+        <div class="rtitle">Senior Engineer | AI Systems &amp; Application Modernization | .NET, Next.js &amp; Cloud Architecture</div>
+        <div class="rmeta">
+          <a href="https://scottroymurphy.com" target="_blank" rel="noopener">scottroymurphy.com</a>
+          <a href="https://www.linkedin.com/in/scottroymurphy" target="_blank" rel="noopener">linkedin.com/in/scottroymurphy</a>
+          <a href="https://github.com/srmbsrg" target="_blank" rel="noopener">github.com/srmbsrg</a>
+        </div>
+        <hr>
+
+        <div class="rlabel">Professional Summary</div>
+        <p>Senior Software Engineer with 15+ years designing and delivering enterprise-grade systems across .NET, cloud, and integration-heavy environments. Track record of owning complex architecture end-to-end — Clean Architecture, microservices, Azure-native APIs, and enterprise integrations spanning Salesforce, document management platforms, and AI-assisted processing workflows.</p>
+        <p>Independently architected and shipped Carborundum AI — an AI-native field operations platform for trades businesses, built from zero across Next.js, multi-agent orchestration, Claude API, and React Native. Equally effective leading technical workstreams in enterprise consulting engagements and owning the full stack as a solo technical founder.</p>
+
+        <div class="rlabel">Core Skills &amp; Technologies</div>
+        <ul>
+          <li><strong>Application Modernization:</strong> architecture assessments, legacy decomposition, modernization roadmaps, microservices, modular monolith refactoring</li>
+          <li><strong>Backend:</strong> C#, .NET 10, .NET Core, Clean Architecture, DDD, REST APIs, integration patterns</li>
+          <li><strong>Cloud &amp; DevOps:</strong> Azure App Services, Azure Redis, Azure Storage, CI/CD (Azure DevOps, Jenkins, Git, Octopus)</li>
+          <li><strong>Enterprise Integrations:</strong> Salesforce (Forza.Net/SOQL), M-Files, SFTP, document processing, AI-powered workflows</li>
+          <li><strong>Front-End:</strong> React, Angular, SPA migration strategies</li>
+          <li><strong>Testing &amp; Quality:</strong> NUnit, Moq, mocking strategies, automation tooling</li>
+          <li><strong>AI Engineering:</strong> multi-agent orchestration, LLM prompt architecture, Claude API/SDK, ElevenLabs voice synthesis, RAG pipelines, agentic workflow design, Next.js full-stack</li>
+        </ul>
+
+        <div class="rlabel">Professional Experience</div>
+        <div class="rjob">
+          <div class="rr">Perficient, Inc. — Senior Technical Consultant, App Modernization</div>
+          <div class="rw">Remote / Houston, TX · Nov 2025 – Apr 2026</div>
+          <ul>
+            <li>Delivered cloud-native .NET 10 microservices and enterprise API engineering for Lockton, a large-scale insurance client.</li>
+            <li>Designed a Binder Management API suite using Clean Architecture, modular domain layers, and repository abstractions.</li>
+            <li>Integrated QuoteCompare AI into insurance workflows, automating binder document extraction and premium calculation.</li>
+            <li>Implemented M-Files document management integration; architected an Azure Redis distributed caching strategy.</li>
+            <li>Built Salesforce integration microservices (Forza.Net / SOQL); established CI/CD with NUnit/Moq coverage.</li>
+          </ul>
+        </div>
+        <div class="rjob">
+          <div class="rr">Loomis Armored — Senior Software Engineer</div>
+          <div class="rw">Houston, TX · Mar 2022 – Mar 2025</div>
+          <ul>
+            <li>Led modernization of Loomis Direct, migrating from legacy .NET to .NET Core and a React SPA.</li>
+            <li>Drove Azure cloud adoption and optimized CI/CD pipelines, reducing deployment time by 30%.</li>
+          </ul>
+        </div>
+        <div class="rjob">
+          <div class="rr">Transcore — Senior Software Engineer (Contract)</div>
+          <div class="rw">Houston, TX · Oct 2019 – Nov 2021</div>
+          <ul>
+            <li>Delivered modernization solutions for state government systems using Angular, C#, and Azure-hosted SQL.</li>
+            <li>Converted multi-threaded legacy data processing into scalable, maintainable modules.</li>
+          </ul>
+        </div>
+        <div class="rjob">
+          <div class="rr">Roquemore — Senior Software Engineer</div>
+          <div class="rw">Garland, TX · Jun 2015 – Sep 2019</div>
+          <ul>
+            <li>Modernized internal WPF and MVC applications.</li>
+            <li>Led integrations including Equifax, TransUnion, and CarFax.</li>
+          </ul>
+        </div>
+        <div class="rjob">
+          <div class="rr">Automated Integration — Senior Software Engineer</div>
+          <div class="rw">Dallas, TX · Jan 2011 – Mar 2015</div>
+          <ul>
+            <li>Revitalized a legacy ERP/dispatching system and delivered modernization-ready enhancements.</li>
+            <li>Developed field service mobile apps using C# and SQL Server.</li>
+          </ul>
+        </div>
+
+        <div class="rlabel">Selected Project</div>
+        <div class="rjob">
+          <div class="rr">Carborundum AI — Technical Founder &amp; Principal Engineer</div>
+          <div class="rw">2025 – Present · carborundum.ai</div>
+          <ul>
+            <li>Architected and deployed a Next.js platform (25+ routes, subdomain routing, Vercel auto-deploy).</li>
+            <li>Built multi-agent AI orchestration integrating Claude API, ElevenLabs voice, and HeyGen avatar generation.</li>
+            <li>Designed a modular ERP suite (Manifold/Carbon): job costing, crew scheduling, CRM, invoicing, AI-assisted dispatch.</li>
+            <li>Implemented Stripe payment flows, a password-gated sales hub, and a self-serve diagnostic scanner (The Assay).</li>
+            <li>Scaffolded a React Native mobile field app (Titanium); achieved WCAG 2.1 AA compliance.</li>
+          </ul>
+        </div>
+
+        <div class="rlabel">Education &amp; Certifications</div>
+        <ul>
+          <li>University of Houston — Computer Science</li>
+          <li>Professional Scrum with Kanban (PSK I)</li>
+          <li>Lean Six Sigma Yellow Belt</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer>
+    Scott Roy Murphy · <a href="mailto:scott@carborundum.ai">scott@carborundum.ai</a> · <a href="https://www.carborundum.ai" target="_blank" rel="noopener">carborundum.ai</a>
+  </footer>
+
+</div>
+</body>
+</html>
