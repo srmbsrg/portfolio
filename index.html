@@ -85,6 +85,10 @@
   .linkcard:hover .lt{color:var(--white);}
   .linkcard .ls{font-size:12.5px; color:var(--dim); margin-top:3px;}
   .linkcard .lu{font-size:11px; color:var(--faint); margin-top:4px; font-family:'SF Mono','Fira Code',ui-monospace,monospace; word-break:break-all;}
+  .linkcard.featured{border-color:#2b6cb0; background:linear-gradient(135deg,rgba(26,54,93,.55) 0%,rgba(42,67,101,.45) 100%);}
+  .linkcard.featured:hover{border-color:var(--accent);}
+  .fbadge{display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; padding:2px 7px; border-radius:5px; margin-left:9px; vertical-align:middle; background:#2b6cb0; color:#cfe7ff;}
+  .sublabel{font-size:11px; color:var(--dim); margin:-4px 0 10px;}
 
   /* Resume panel (right column) */
   .resume{position:sticky; top:24px; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:26px;}
@@ -270,7 +274,23 @@
 
       <section>
         <div class="label">Public Repos / Agentic Coding</div>
+        <p class="sublabel">Featured skills — new public showcase repos</p>
         <div class="linklist">
+          <a class="linkcard featured" href="https://github.com/srmbsrg/agentic-orchestration-demo" target="_blank" rel="noopener">
+            <div class="lt">agentic-orchestration-demo <span class="fbadge">New</span></div>
+            <div class="ls">Multi-agent orchestration on the Claude API: a dispatcher delegating to specialist sub-agents with a governance gate that escalates sensitive actions for human approval.</div>
+            <div class="lu">github.com/srmbsrg/agentic-orchestration-demo</div>
+          </a>
+          <a class="linkcard featured" href="https://github.com/srmbsrg/ai-governance-guardrails" target="_blank" rel="noopener">
+            <div class="lt">ai-governance-guardrails <span class="fbadge">New</span></div>
+            <div class="ls">A reusable guardrail layer that lets AI accelerate routine work but blocks/escalates anything touching money, credentials, compliance, or critical integrations (fail-closed, audit-logged).</div>
+            <div class="lu">github.com/srmbsrg/ai-governance-guardrails</div>
+          </a>
+          <a class="linkcard featured" href="https://github.com/srmbsrg/governable-rag" target="_blank" rel="noopener">
+            <div class="lt">governable-rag <span class="fbadge">New</span></div>
+            <div class="ls">A governable RAG pipeline: Chonkie for intelligent chunking + instructor for typed, structured output, native to Azure OpenAI — auditable retrieval, not just fast.</div>
+            <div class="lu">github.com/srmbsrg/governable-rag</div>
+          </a>
           <a class="linkcard" href="https://github.com/srmbsrg/ask-kernel" target="_blank" rel="noopener">
             <div class="lt">ask-kernel (A.S.K)</div>
             <div class="ls">Versioned, composable library of AI agent capabilities.</div>
